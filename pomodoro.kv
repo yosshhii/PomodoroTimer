@@ -1,0 +1,91 @@
+#:import utils kivy.utils
+
+
+<StatusButton@Button>
+    font_size: 32
+    color: 'D6EFD8'
+
+
+<Button>
+    background_normal: ''
+    background_color: 0, 0, 0, 0
+
+
+<ProgramLayout>
+    BoxLayout:
+        size: root.width, root.height
+        orientation: 'vertical'
+        padding: [120, 120, 120, 200]
+
+        canvas.before:
+            Color:
+                rgba: utils.get_color_from_hex('#80AF81')
+            RoundedRectangle:
+                pos: self.x + 120, self.y + 120
+                size: self.width - 240, self.height - 240
+                radius: [30]
+
+
+        BoxLayout:
+            size_hint: 0.7, 0.3
+            pos_hint: {'center_x': 0.5}
+            spacing: 10
+
+            StatusButton:
+                id: first_button
+                text: 'Pomodoro'
+                bold: True
+                canvas.before:
+                    Color:
+                        rgba: utils.get_color_from_hex('#365E32')
+                    RoundedRectangle:
+                        pos: self.center_x - self.width / 2, self.center_y - self.height * 0.5 / 2
+                        size: self.width, self.height * 0.5
+                        radius: [14]
+
+            StatusButton:
+                id: second_button
+                text: 'Short Break'
+                canvas.before:
+                    Color:
+                        rgba: 0, 0, 0, 0
+                    RoundedRectangle:
+                        pos: self.center_x - self.width / 2, self.center_y - self.height * 0.5 / 2
+                        size: self.width, self.height * 0.5
+                        radius: [14]
+
+            StatusButton:
+                id: third_button
+                text: 'Long Break'
+                canvas.before:
+                    Color:
+                        rgba: 0, 0, 0, 0
+                    RoundedRectangle:
+                        pos: self.center_x - self.width / 2, self.center_y - self.height * 0.5 / 2
+                        size: self.width, self.height * 0.5
+                        radius: [14]
+
+
+        Label:
+            id: time
+            text: root.format_time(root.current_time)
+            font_size: 208
+            bold: True
+            color: 'D6EFD8'
+
+        Button:
+            id: toggle_button
+            text: 'START'
+            color: '80AF81'
+            font_size: 68
+            bold: True
+            on_press: root.toggle_status()
+            size_hint: 0.5, 0.3
+            pos_hint: {'center_x': 0.5}
+            canvas.before:
+                Color:
+                    rgba: utils.get_color_from_hex('#D6EFD8')
+                RoundedRectangle:
+                    pos: self.pos
+                    radius: [20]
+                    size: self.size
